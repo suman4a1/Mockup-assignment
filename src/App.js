@@ -32,7 +32,7 @@ function App() {
         let mailFirstPart = mailFirstPartFun(item.email.split('@')[0])
         item.mailFirstPart = mailFirstPart+' <'+item.email+'>';
         item.date = Moment(new Date()).format('DD/MM/YYYY HH:MM');
-        item.readmoreFlag = item.body.length>20 ? true:false;
+        item.readmoreFlag = item.body.length>50 ? true:false;
         return item
       })
       setlist(filterList);
@@ -71,7 +71,7 @@ function App() {
             <div className='content'>
               <p>From: <b>{item.mailFirstPart}</b></p>
               <p>Subject: <b>{item.name}</b></p>
-              {!item.readmoreFlag ? <p style={{display: 'inline-block'}}>{item.body}</p> : <p style={{display: 'inline-block'}}>{item.body.substr(0, 20)}<span id={`dots-${item.id}`}> ...</span><span id={`more-${item.id}`} style={{ display: 'none' }}>{item.body.substr(20, item.body.length)}</span></p>}
+              {!item.readmoreFlag ? <p style={{display: 'inline-block'}}>{item.body}</p> : <p style={{display: 'inline-block'}}>{item.body.substr(0, 50)}<span id={`dots-${item.id}`}> ...</span><span id={`more-${item.id}`} style={{ display: 'none' }}>{item.body.substr(50, item.body.length)}</span></p>}
               <a href="#" onClick={() => myFunction(item.id)} id={`mybtn-${item.id}`}>read more</a>
               <p>{item.date}</p>
             </div>
